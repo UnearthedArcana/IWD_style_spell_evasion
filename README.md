@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 2.0 </strong></p>
+  <p><strong> Version 2.1 </strong></p>
 </div>
 <h2>WHAT THIS IS</h2>
 <div class="section">
@@ -60,6 +60,7 @@
   <p>The "evasion_save" variable refers to the saving throw used for the extra save.  The traditional Evasion saving throw is vs. Breath Weapon (something like a Dodge save, I think).  But you can apply an alternate version that uses other saves... you can give characters an extra Death save to avoid Energy Drain spells, or something like that.</p>
   <p>The "evade_spell" variable refers to the spell being patched by the function.  To apply this to one spell, simply use that spell's name.  If applying it to a list of spells, as in the example above, use the variable to go through the list.</p>
   <p>The "evade_prefix" variable must be created by you.  it should be unique, and it MUST be 4 characters or fewer, and it should not conflict with any spell or item name when any 3 numbers are appended to it.  I use "d5ev" - "d5" is my modding prefix, and "ev" is for evasion.  This prefix has two uses: 1) it is combined with the "evasion_ind" integer variable to create a unique filename for the .EFF files uses with each spell to which this function is applied; and 2) it is combined with the spellstate number of the spellstate used, in the name of a .2DA file which is created and which lists all of the spells and the associated .EFF files to which this function is applied.  The function checks this .2DA file to prevent the same evasion check from being applied more than once.</p>
+  <p>Note: DO NOT use the same prefix with versions that use different spellstates.  IOt could cause problems.</p>
 </div>
 <h2>Compatibility</h2>
 <div class="section">
