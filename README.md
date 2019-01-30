@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 2.2 </strong></p>
+  <p><strong> Version 2.4 </strong></p>
 </div>
 <h2>WHAT THIS IS</h2>
 <div class="section">
@@ -22,11 +22,11 @@
 </div>
 <h2>HOW TO USE THIS</h2>
 <div class="section">
-  <p>If you don't already have one, make a folder called "lib" in your mod's main folder.  Drop the "spell_evasion" folder there.  Unless you want to edit the function itself, the placement of this folder is quite strict.
-  <p>Now you need to do two things:<br />
+  <p>If you don't already have one, make a folder called "lib" in your mod's main folder.  Drop the "spell_evasion" .tpa file there.  Unless you want to edit the function itself, the placement of this folder is quite strict.
+  <p>Now you need to do four things:<br />
   <p>1) Activate the Evasion function with the following code:</p>
     <div class="kit_description">
-	INCLUDE ~%MOD_FOLDER%/lib/spell_evasion/spell_evasion.tpa</b></p>
+	INCLUDE ~%MOD_FOLDER%/lib/spell_evasion.tpa</b></p>
 	</div>
   <p>2) Create a spell or other effect that sets the Evasion spellstate for some character.  NOTE: this does <b>not</b> have to be the actual Evasion spellstate (252)... you can add a new spellstate and use that one.  This allows you to use the basic "extra chance to save" mechanic in different ways, against different spells, with different saving throws, for different characters.  See below for more information.</p>
   <p>For example, I create a spell to grant the Evasion ability permanently like this:
