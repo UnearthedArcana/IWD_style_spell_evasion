@@ -35,7 +35,7 @@
 	  COPY_EXISTING ~spcl221.spl~ ~override/d5evade.spl~<br />
 		SAY NAME1 ~ ~<br />
 		SAY UNIDENTIFIED_DESC ~ ~<br />
-		LPF DELETE_EFFECT INT_VAR match_probability1 = 100 END<br />
+		LPF DELETE_EFFECT END<br />
 		LPF ADD_SPELL_EFFECT INT_VAR opcode = 328 target = 1 parameter2 = 252 timing = 9 special = 1 END<br />
 	  BUT_ONLY<br />
 	END</p>
