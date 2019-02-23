@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-  <p><strong> Version 2.5 </strong></p>
+<p><strong> Version 3.0 </strong></p>
 </div>
 <h2>WHAT THIS IS</h2>
 <div class="section">
@@ -59,18 +59,37 @@
   <p>The "evasion_spellstate" variable refers to an entry in SPELLSTATE.IDS.  For traditional IWD-style Evasion, I use the Evasion spellstate, #252.  But you can use any other spellstate in your application, including custom spellstates.</p>
   <p>The "evasion_save" variable refers to the saving throw used for the extra save.  The traditional Evasion saving throw is vs. Breath Weapon (something like a Dodge save, I think).  But you can apply an alternate version that uses other saves... you can give characters an extra Death save to avoid Energy Drain spells, or something like that.</p>
   <p>The "evade_res" variable refers to the spell (or item!) being patched by the function.  To apply this to one spell (or item), simply use that spell (or item)'s name.  If applying it to a list of spells (or... eh, you get the point), as in the example above, use the variable to represent the list.</p>
-  <p>The "evade_prefix" variable must be created by you.  It should be unique, and it MUST be 4 characters or fewer, and it should not conflict with any spell or item name when any 3 numbers are appended to it.  I use "d5ev" - "d5" is my modding prefix, and "ev" is for evasion.  This prefix has two uses: 1) it is combined with the "evasion_ind" integer variable to create a unique filename for the .EFF files uses with each spell to which this function is applied; and 2) it is combined with the number of the spellstate used, to createa .2DA file which lists all of the spells and the associated .EFF files to which this function is applied.  The function checks this .2DA file to prevent the same evasion check from being applied more than once.</p>
+  <p>The "evade_prefix" variable must be created by you.  It should be unique, and it MUST be 4 characters or fewer, and it should not conflict with any spell or item name when any 3 numbers are appended to it.  I use "d5ev" - "d5" is my modding prefix, and "ev" is for evasion.  This prefix has two uses: 1) it is combined with the "evasion_ind" integer variable to create a unique filename for the .EFF files uses with each spell to which this function is applied; and 2) it is combined with the number of the spellstate used, to create a .2DA file which lists all of the spells and the associated .EFF files to which this function is applied.  The function checks this .2DA file to prevent the same evasion check from being applied more than once.</p>
   <p>Note: DO NOT use the same 4-letter prefix with different versions of this that use different spellstates.  It could cause problems.</p>
   <p>You can create your own list of spells to patch this way; this package has a pre-defined array containing the base set of spells that can be evaded in IWD.  You can call this array with:</p>
-    <div class="kit_description">
+<div class="kit_description">
   	ACTION_PHP_EACH evade_spells AS evadable_spell => ind BEGIN <br />
-  	LAF add_evade_spell INT_VAR evasion_spellstate = 252 evasion_save = 2 STR_VAR evade_spell = EVAL ~%evadable_spell%~ evade_prefix = ~[prefix]~ END <br />
+  	LAF add_evade_spell INT_VAR evasion_spellstate = 252 evasion_save = 2 STR_VAR evade_res = EVAL ~%evadable_spell%~ evade_prefix = ~[prefix]~ END <br />
 	END</p>
 	</div>
 	To use the expanded set of spells I've made, add the following <i>before</i> you INCLUDE the .tpa file:</p>
     <div class="kit_description">
 OUTER_SET optional_evade = 1
 	</div>
+</div>
+<h2>NEW IN VERSION 3</h2>
+<div class="section">
+  <p>I've been working to make the function even more flexible.  Here are the function's variables:
+  <ul>
+    <li>INT_VAR evasion_spellstate = # [row of SPLSTATE.IDS]
+    <li>INT_VAR evasion_class = # [number from 1st column of CLASS.IDS]
+    <li>INT_VAR evasion_kit = # [hex number from 1st column of KIT.IDS]
+    <li>INT_VAR evasion_save = #
+    <li>STR_VAR evade_condition = ~[spellstate]/[class]/[kit]~
+    <li>STR_VAR evade_res = [EVAL] ~[spell or item, or variable from list of spells/items]~
+    <li>STR_VAR evade_prefix = ~[up to 4-character alphanumeric string]~
+  </ul>
+  </p>
+  <p>The function should work with either spells or items, or both.  Once you have your list of spells and/or items you want to be evadable, you can decide whether the group of people who can evade them will be defined by having a spellstate set, or being in a certain class, or having in a certain kit.  I described above how to make spells evadable by thieves with spellstate 252; now in Might & Guile, I am also using this to allow Rangers an extra saving throw vs. Death/Poison to avoid disease and poison effects.  After I collect the list of spells and items I want to be resistible, I run the function like so:</p>
+  <p>ACTION_PHP_EACH poison_disease_spells AS resisted_effect => ind BEGIN<br />
+    LAF add_evade_spell INT_VAR evasion_class = 12 evasion_save = 4 STR_VAR evade_condition = ~class~ evade_res = EVAL ~%resisted_effect%~ evade_prefix = ~D5RR~ END<br />
+  END</p>
+  <p>This makes it quite simple, there is no need to create a new spellstate, no need to add anything to kit ability tables or to patch .CRE files.  The evasion effect will now work automatically for anyone in the ranger class - including enemy NPCs!
 </div>
 <h2>Compatibility</h2>
 <div class="section">
