@@ -6,7 +6,7 @@
 //__________________________________________________________________________________
 //__________________________________________________________________________________
 
-// Version: 3.1
+// Version: 3.2
 
 /*
 SAVES:
@@ -119,8 +119,8 @@ DEFINE_ACTION_FUNCTION add_evade_spell
 // 	if traditional evasion, do not evade when helpless
 		PATCH_IF %evade_cond% = 252 BEGIN	
 		  LPF DELETE_EFFECT INT_VAR match_opcode = 318 match_parameter2 = 136 END
-		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 duration = 1 timing = 0 parameter1 = 0x0015602f parameter2 = %state_row% STR_VAR resource = EVAL ~%evade_prefix%A%evasion_ind%~ END
-		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 duration = 1 timing = 0 parameter1 = 0x0015602f parameter2 = %state_row% STR_VAR resource = EVAL ~%evade_prefix%B%evasion_ind%~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 duration = 1 timing = 0 parameter1 = 0x8015602f parameter2 = %state_row% STR_VAR resource = EVAL ~%evade_prefix%A%evasion_ind%~ END
+		  LPF ADD_SPELL_EFFECT INT_VAR insert_point = 0 opcode = 318 target = 2 duration = 1 timing = 0 parameter1 = 0x8015602f parameter2 = %state_row% STR_VAR resource = EVAL ~%evade_prefix%B%evasion_ind%~ END
 		END
 	  CREATE EFF ~%evade_prefix%A%evasion_ind%~
 		WRITE_LONG 0x10 318
