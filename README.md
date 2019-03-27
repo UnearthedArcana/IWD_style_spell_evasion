@@ -79,7 +79,8 @@ OUTER_SET optional_evade = 1
     <li>INT_VAR evasion_spellstate = # [row of SPLSTATE.IDS]
     <li>INT_VAR evasion_class = # [number from 1st column of CLASS.IDS]
     <li>INT_VAR evasion_kit = # [hex number from 1st column of KIT.IDS]
-    <li>INT_VAR evasion_save = #
+    <li>INT_VAR evasion_save = # [0, 1, 2, 4, 8, or 16]
+    <li>INT_VAR evasion_chance = # [number from 1 to 100]
     <li>STR_VAR evade_condition = ~[spellstate]/[class]/[kit]~
     <li>STR_VAR evade_res = [EVAL] ~[spell or item, or variable from list of spells/items]~
     <li>STR_VAR evade_prefix = ~[up to 4-character alphanumeric string]~
@@ -89,7 +90,8 @@ OUTER_SET optional_evade = 1
   <p>ACTION_PHP_EACH poison_disease_spells AS resisted_effect => ind BEGIN<br />
     LAF add_evade_spell INT_VAR evasion_class = 12 evasion_save = 4 STR_VAR evade_condition = ~class~ evade_res = EVAL ~%resisted_effect%~ evade_prefix = ~D5RR~ END<br />
   END</p>
-  <p>This makes it quite simple, there is no need to create a new spellstate, no need to add anything to kit ability tables or to patch .CRE files.  The evasion effect will now work automatically for anyone in the ranger class - including enemy NPCs!
+  <p>This makes it quite simple, there is no need to create a new spellstate, no need to add anything to kit ability tables or to patch .CRE files.  The evasion effect will now work automatically for anyone in the ranger class - including enemy NPCs!</p>
+  <p>New in 3.1, you can set the %evasion_chance% variable to an integer between 1 and 100. This will make you less likely to evade the effect; in conjunction with a saving throw, it means you wil have to make your save <i>and</i> be within the percent chance to evade. Alternatively, you can set %evasion_save% to zero, in which case the function will operate entirely according to the percent chance roll. In this way, it will work exactly like Magic Resistance, but targeted for the specific set of spells/items that you list.  (You still need to define an evasion condition - spellstate, class, or kit - to determine who gets this selective MR.)</p>
 </div>
 <h2>Compatibility</h2>
 <div class="section">
