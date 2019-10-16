@@ -11,7 +11,7 @@
 <div class="section">
   <p><strong>Author:</strong> <a href="http://forums.gibberlings3.net/index.php?showuser=6306">Duns Scotus, the SubtleDoctor</a><br />
 </p>
-<p><strong> Version 3.3 </strong></p>
+<p><strong> Version 3.4 </strong></p>
 </div>
 <h2>WHAT THIS IS</h2>
 <div class="section">
